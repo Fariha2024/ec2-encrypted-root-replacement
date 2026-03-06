@@ -1,9 +1,11 @@
 
 
-# AWS Assignment 
+# AWS Assignment
+
 
 ## Objective
 The objective of this assignment is to Replace Unencrypted EC2 Root Volume with an Encrypted Root Volume Using an EBS Snapshot, without losing any existing data.
+
 
 
 ## AWS Service Used
@@ -12,6 +14,7 @@ The objective of this assignment is to Replace Unencrypted EC2 Root Volume with 
 - Amazon EBS
 - Amazon EBS Snapshots
 - AWS KMS (Key Management Service)
+
 
 
 ## Architecture / Workflow
@@ -31,6 +34,7 @@ The following workflow was used to replace the unencrypted root volume with an e
 This process ensures encryption is applied without any data loss.
 
 
+
 ## Repository Structure
 
 aws-ec2-root-volume-replacement/
@@ -41,6 +45,7 @@ aws-ec2-root-volume-replacement/
 │   ├── 02_instance_initialized_ap_south_1a.png
 │   ├── ...
 │   └── 35_screenshot_conclusion.png
+
 
 
 ## Table of Contents
@@ -60,6 +65,7 @@ aws-ec2-root-volume-replacement/
 - Resource 
 
 
+
 # ✅ STEP 1 – Launch EC2 Instance with Unencrypted Root 
 
 🔹 Instance Details
@@ -75,7 +81,9 @@ EC2 instance launched with an unencrypted root EBS volume to demonstrate replace
 
 . Region: Asia Pacific (Mumbai) (ap-south-1)
 
+Screenshot Reference:
 ![launch instance](screenshots/01_screenshot_ec2_ami.png)
+
 
 
 🔑 Key Pair Creation
@@ -92,7 +100,10 @@ After creating the key pair:
 
 . Store it securely
 
+
+Screenshot Reference:
 ![download .pem](screenshots/1_screenshot_keypair.png)
+
 
 
 💾 Storage Configuration
@@ -103,19 +114,26 @@ After creating the key pair:
 
 . This ensures the root volume is unencrypted.
 
+
 Screenshot Reference:
 ![encryption disabled](screenshots/03_screenshot_check_encryption_disabled.png)
+
 
 
 💾 instance Launched ap-south-1a
 
 . Instance initialized
+
+
 Screenshot Reference:
 ![initialized successfully](screenshots/02_instance_initialized_ap_south_1a.png)
+
+
 
 . Instance Running
 Screenshot Reference:
 ![Running](screenshots/04_screenshot_ec2_running.png)
+
 
 
 # ✅ STEP 2 – Connect to Linux Instance
@@ -129,6 +147,8 @@ Use:
 . browse to .pem key
 . accept and connected successfully to linux
 
+
+Screenshot Reference:
 ![conect to linux via mobexterm](screenshots/4_screenshot_connect_to_linux.png)
 
 
@@ -138,8 +158,10 @@ Login Commands:
 . ls : test_data.txt   test_data_.txt.save
 . cat /home/ec2-user/test_data.txt : The file exists on the EC2 instance within expected data. This file will serve as a checkpoint to confirm that no data is lost when the root volume is replaced with an encrypted volume.
 
+
 Screenshot Reference:
 ![linux login commands](screenshots/5_screenshot_linux_login.png)
+
 
 
 # ✅ STEP 3 – Create Snapshot of Unencrypted Root Volume
@@ -150,8 +172,10 @@ Screenshot Reference:
 
 . Click Actions → Create Snapshot
 
+
 Screenshot Reference:
 ![snapshot of unencrypted root valume ap south 1a](screenshots/7_screenshot_snapshot_of_unencrypted_volume.png)
+
 
 🔹 Snapshot Details:
 
@@ -159,13 +183,17 @@ Screenshot Reference:
 
 . Description: Snapshot of unencrypted root volume before encryption
 
+
 Screenshot Reference:
 ![Name and Description](screenshots/8_screenshot_snapshot_details.png)
 
+
 . snapshot created successfully
+
 
 Screenshot Reference:
 ![snapshot created](screenshots/9_screenshot_snapshot_created_successfully.png)
+
 
 
 # ✅ STEP 4 – Stop the Instance
@@ -178,14 +206,17 @@ Go to AWS Console:
 
 . Click Stop
 
+
 Screenshot Reference:
 ![click_stop](screenshots/5_screenshot_stop_ec2.png)
 
 
 . Wait until instance state becomes Stopped
 
+
 Screenshot Reference:
 ![unencrypted_root_volume_stopped](screenshots/6_screenshot_stopped_successfully.png)
+
 
 
 # ✅ STEP 5 – Copy Snapshot with Encryption Enabled
@@ -198,15 +229,19 @@ Now we create an encrypted copy.
 
 . Click Actions → Copy Snapshot
 
+
 Screenshot Reference:
 ![select copy snapshot](screenshots/10_screenshot_copy_snapshot.png)
+
 
 In copy options:
 
 . description : Encrypted copy of unencrypted root snapshot for root volume replacement in same region (ap-south-1)
 
+
 Screenshot Reference:
 ![copy snapshot details page](screenshots/copy_snapshot.png)
+
 
 . Copy Snapshot with Encryption Enabled
 Select default AWS KMS key
@@ -215,8 +250,10 @@ Select default AWS KMS key
 
 . So the service responsible for encryption is: AWS Key Management Service (KMS) 🔐
 
+
 Screenshot Reference:
 ![destination region ap-south1](screenshots/encryption_enabled_copy_snapshot.png)
+
 
 ✅ Enable Encryption
 
@@ -226,8 +263,10 @@ Screenshot Reference:
 
 . encrypted-root-snapshot
 
+
 Screenshot Reference:
 ![successfully created snapshot copy](screenshots/14_screenshot_copy_snapshot_created_successfully.png)
+
 
 
 # ✅ STEP 6 – Create Encrypted Volume from Encrypted Snapshot
@@ -236,40 +275,51 @@ Screenshot Reference:
 
 . Click Actions → Create Volume
 
+
 Screenshot Reference:
 ![create volume from snapshot](screenshots/15_screenshot_create_volume.png)
+
 
 IMPORTANT:
 🔹Choose same Availability Zone as original instance
 
 🔹Encryption: ✅ Enabled (automatically)
 
+
 Screenshot Reference:
 ![encryption enabled automatically](screenshots/16_screenshot_encryption_enabled.png)
+
 
 🔹 Volume Name: encrypted-root-volume
 
 Screenshot Reference:
 ![volume name tag](screenshots/17_screenshot_volume_name.png)
 
+
  🔹 create volume details page
 Field	Value:
 . Volume Type	gp3 (default)
+
 . Size	Same as snapshot (8 GiB)
+
 . Availability Zone	Same as EC2 instance (ap-south-1a)
+
 
 Screenshot Reference:
 ![volume type](screenshots/18_screenshot_volume_type.png)
+
 
 Screenshot Reference:
 ![volume availability zone](screenshots/19_screenshot_volume_az.png)
 
 
+
 # ✅ STEP 7 – Detach Old Root Volume
 
-🔹 Step 1 – Go to Volumes
+🔹 Step 1 – Go to 
 
-🔹 Step 2 – Identify the Old Root Volume
+
+🔹 Step 2 – Identify the Old Root 
 
 . Look for the volume attached to instance:
 
@@ -281,20 +331,25 @@ Screenshot Reference:
 
 This is the original unencrypted root volume.
 
+
 🔹 Step 3 – Detach Volume
 
 . Tick the checkbox next to that volume
 
 . Click Actions → Detach Volume
 
+
 Screenshot Reference:
 ![Detach volume](screenshots/20_screenshot_detach_volume.png)
+
 
 
 Screenshot Reference:
 ![Detached successfully](screenshots/21_screenshot_detached_successfully.png)
 
+
 . Wait until State shows available (not attached to any instance)
+
 
 💡 Important Notes:
 
@@ -305,6 +360,7 @@ Screenshot Reference:
 . This ensures the root volume can be safely replaced with the encrypted one.
 
 . After this, we can move to attach the new encrypted volume as the root volume.
+
 
 
 # ✅ STEP 8 – Attach New Encrypted Volume as Root
@@ -321,8 +377,10 @@ Screenshot Reference:
 
 . Click Actions → Attach Volume
 
+
 Screenshot Reference:
 ![attached volume](screenshots/22_screenshot_volume_attached.png)
+
 
 🔹 Step 4 – Configure Attachment
 
@@ -334,8 +392,10 @@ In the popup:
 
 . Click Attach
 
+
 Screenshot Reference:
 ![Volume configured](screenshots/23_screenshot_volume_configuered_successfully.png)
+
 
 🔹 Step 5 – Confirm
 
@@ -347,7 +407,9 @@ Screenshot Reference:
 . The root volume is now encrypted EBS volume
 
 
+
 # ✅ STEP 9 – Start the EC2 Instance
+
 
 🔹Step 1 – Go to Instances
 
@@ -355,11 +417,13 @@ Screenshot Reference:
 
 . Find stopped instance: unencrypted_root_instance
 
+
 🔹Step 2 – Start the Instance
 
 . Tick the checkbox next to instance
 
 . Click Instance state → Start 
+
 
 Screenshot Reference:
 ![start the stopped instance](screenshots/26_screenshot_start_the_stopped_instance.png)
@@ -369,19 +433,25 @@ Screenshot Reference:
 
 . The Instance State will change from stopped → pending → running
 
+
 Screenshot Reference:
 ![stopped](screenshots/27_screenshot_status_stopped.png)
+
 
 Screenshot Reference:
 ![pensding](screenshots/28_screenshot_status_pending.png)
 
+
 Screenshot Reference:
 ![running](screenshots/29_screenshot_status_running.png)
 
+
 . Wait until Status Checks show: 3/3 checks passed 
+
 
 Screenshot Reference:
 ![3/3 checks passed](screenshots/30_screenshot_3_by_3_checks_passed.png)
+
 
 🔹Step 4 – Verify in Console
 
@@ -390,6 +460,7 @@ Screenshot Reference:
 . The instance now uses the encrypted root volume
 
 After this, the final step is to connect via SSH and check your test file to ensure no data was lost.
+
 
 
 # ✅ STEP 10 – Verify Data is NOT Lost
@@ -404,14 +475,20 @@ Reconnect:
 
 2️⃣ Navigate to home directory: cd /home/ec2-user
 
+
+
 Screenshot Reference:
 ![cd /home/ec2-user](screenshots/34_screenshot_cd_home_ec2-user_.png)
+
+
 
 3️⃣ List files to make sure test file exists:ls -l
 
 . You should see: test_data.txt
 
 . This confirms the file is still on the root volume.
+
+
 
 Screenshot Reference:
 ![ls -1](screenshots/32_screenshot_connected_linux_ls.png)
@@ -424,14 +501,19 @@ Screenshot Reference:
 
 Example: The file exists on the EC2 instance with the expected data. This file will serve as a checkpoint to confirm that no data is lost when the root volume is replaced with an encrypted volume.
 
+
 Screenshot Reference:
 ![data is exactly same](screenshots/34_screenshot_cd_home_ec2-user_.png)
 
 
+
 5️⃣ Check disk usage to confirm volume is mounted: df -h
+
 
 Screenshot Reference:
 ![df -h](screenshots/33_screenshot_df_-h.png)
+
+
 
 . Look for /dev/xvda mounted at /
 
@@ -442,16 +524,19 @@ Screenshot Reference:
 
 🔹Here’s what the df -h output tells us:
 
+
 | Filesystem         | Size | Used | Avail | Mounted on  |
 | ------------------ | ---- | ---- | ----- | ----------- |
 | `/dev/nvme0n1p1`   | 8.0G | 1.6G | 6.4G  | `/`         |
 | `/dev/nvme0n1p128` | 10M  | 1.3M | 8.7M  | `/boot/efi` |
+
 
 . /dev/nvme0n1p1 → this is root volume mounted at /
 
 . Size and usage match previous root volume
 
 . This shows the encrypted root volume is properly attached and active
+
 
 
 🔹Final Screenshot Findings: 
@@ -462,8 +547,11 @@ Screenshot Reference:
 
 . File content displayed in the terminal
 
+
 Screenshot Reference:
 ![successfull](screenshots/35_screenshot_conclusion.png)
+
+
 
 
 🎉 This confirms:
@@ -476,6 +564,7 @@ These steps confirm that the assignment objective was successfully achieved.: th
 . Replacement successful
 
 
+
 ## Key Learning Outcomes
 
 Through this assignment, the following AWS concepts were demonstrated:
@@ -486,6 +575,7 @@ Through this assignment, the following AWS concepts were demonstrated:
 - Creating encrypted volumes from snapshots
 - Replacing EC2 root volumes safely
 - Verifying data integrity after infrastructure changes
+
 
 
 # Conclusion
@@ -503,11 +593,13 @@ Key Points:
 The objective of converting an unencrypted root volume into an encrypted root volume was successfully achieved.
 
 
+
 # 🎯 Final Result
 
 ✔ Data preserved
 ✔ Encryption enabled
 ✔ Instance running 
+
 
 
 # 🔹  Post-Lab Cleanup
