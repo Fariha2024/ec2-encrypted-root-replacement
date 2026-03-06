@@ -3,12 +3,12 @@
 # AWS Assignment
 
 
-## Objective
+##  🔹 Objective
 The objective of this assignment is to Replace Unencrypted EC2 Root Volume with an Encrypted Root Volume Using an EBS Snapshot, without losing any existing data.
 
 
 
-## AWS Service Used
+##  🔹 AWS Service Used
 
 - Amazon EC2
 - Amazon EBS
@@ -17,7 +17,7 @@ The objective of this assignment is to Replace Unencrypted EC2 Root Volume with 
 
 
 
-## Architecture / Workflow
+##  🔹 Architecture / Workflow
 
 The following workflow was used to replace the unencrypted root volume with an encrypted one:
 
@@ -35,7 +35,7 @@ This process ensures encryption is applied without any data loss.
 
 
 
-## Repository Structure
+## 🔹 Repository Structure
 
 aws-ec2-root-volume-replacement/
 │
@@ -48,7 +48,7 @@ aws-ec2-root-volume-replacement/
 
 
 
-## Table of Contents
+## 🔹 Table of Contents
 
 - Objective
 - Step 1 – Launch EC2 Instance
@@ -66,7 +66,7 @@ aws-ec2-root-volume-replacement/
 
 
 
-# ✅ STEP 1 – Launch EC2 Instance with Unencrypted Root 
+#  🔵  STEP 1 – Launch EC2 Instance with Unencrypted Root 
 
 🔹 Instance Details
 
@@ -136,7 +136,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 2 – Connect to Linux Instance
+#  🔵  STEP 2 – Connect to Linux Instance
 
 Use:
 
@@ -164,7 +164,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 3 – Create Snapshot of Unencrypted Root Volume
+#  🔵  STEP 3 – Create Snapshot of Unencrypted Root Volume
 
 . Go to Elastic Block Store → Volumes
 
@@ -196,7 +196,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 4 – Stop the Instance
+#  🔵  STEP 4 – Stop the Instance
 
 Go to AWS Console:
 
@@ -219,7 +219,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 5 – Copy Snapshot with Encryption Enabled
+#  🔵  STEP 5 – Copy Snapshot with Encryption Enabled
 
 Now we create an encrypted copy.
 
@@ -269,7 +269,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 6 – Create Encrypted Volume from Encrypted Snapshot
+#  🔵  STEP 6 – Create Encrypted Volume from Encrypted Snapshot
 
 . Select encrypted-root-snapshot
 
@@ -314,7 +314,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 7 – Detach Old Root Volume
+#  🔵  STEP 7 – Detach Old Root Volume
 
 🔹 Step 1 – Go to 
 
@@ -363,7 +363,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 8 – Attach New Encrypted Volume as Root
+#  🔵  STEP 8 – Attach New Encrypted Volume as Root
 
 🔹 Step 1 – Go to Volumes
 
@@ -408,7 +408,7 @@ Screenshot Reference:
 
 
 
-# ✅ STEP 9 – Start the EC2 Instance
+#  🔵  STEP 9 – Start the EC2 Instance
 
 
 🔹Step 1 – Go to Instances
@@ -463,7 +463,7 @@ After this, the final step is to connect via SSH and check your test file to ens
 
 
 
-# ✅ STEP 10 – Verify Data is NOT Lost
+#  🔵  STEP 10 – Verify Data is NOT Lost
 
 🔹 How to Verify
 
@@ -565,7 +565,7 @@ These steps confirm that the assignment objective was successfully achieved.: th
 
 
 
-## Key Learning Outcomes
+## 🔹Key Learning Outcomes
 
 Through this assignment, the following AWS concepts were demonstrated:
 
@@ -578,7 +578,7 @@ Through this assignment, the following AWS concepts were demonstrated:
 
 
 
-# Conclusion
+#🔹Conclusion
 
 In this assignment, the original unencrypted root volume was successfully replaced with an encrypted root volume using an EBS snapshot.
 
