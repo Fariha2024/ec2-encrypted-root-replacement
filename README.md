@@ -115,7 +115,7 @@ Screenshot Reference:
 
 . Instance Running
 Screenshot Reference:
-![Running](screenshots\04_screenshot_ec2_running.png)
+![Running](screenshots/04_screenshot_ec2_running.png)
 
 
 # ✅ STEP 2 – Connect to Linux Instance
@@ -129,7 +129,7 @@ Use:
 . browse to .pem key
 . accept and connected successfully to linux
 
-![conect to linux via mobexterm](screenshots\4_screenshot_connect_to_linux.png)
+![conect to linux via mobexterm](screenshots/4_screenshot_connect_to_linux.png)
 
 
 Login Commands:
@@ -151,7 +151,7 @@ Screenshot Reference:
 . Click Actions → Create Snapshot
 
 Screenshot Reference:
-![snapshot of unencrypted root valume ap south 1a](screenshots\7_screenshot_snapshot_of_unencrypted_volume.png)
+![snapshot of unencrypted root valume ap south 1a](screenshots/7_screenshot_snapshot_of_unencrypted_volume.png)
 
 🔹 Snapshot Details:
 
@@ -160,12 +160,12 @@ Screenshot Reference:
 . Description: Snapshot of unencrypted root volume before encryption
 
 Screenshot Reference:
-![Name and Description](screenshots\8_screenshot_snapshot_details.png)
+![Name and Description](screenshots/8_screenshot_snapshot_details.png)
 
 . snapshot created successfully
 
 Screenshot Reference:
-![snapshot created](screenshots\9_screenshot_snapshot_created_successfully.png)
+![snapshot created](screenshots/9_screenshot_snapshot_created_successfully.png)
 
 
 # ✅ STEP 4 – Stop the Instance
@@ -179,13 +179,13 @@ Go to AWS Console:
 . Click Stop
 
 Screenshot Reference:
-![click_stop](screenshots\5_screenshot_stop_ec2.png)
+![click_stop](screenshots/5_screenshot_stop_ec2.png)
 
 
 . Wait until instance state becomes Stopped
 
 Screenshot Reference:
-![unencrypted_root_volume_stopped](screenshots\6_screenshot_stopped_successfully.png)
+![unencrypted_root_volume_stopped](screenshots/6_screenshot_stopped_successfully.png)
 
 
 # ✅ STEP 5 – Copy Snapshot with Encryption Enabled
@@ -199,7 +199,7 @@ Now we create an encrypted copy.
 . Click Actions → Copy Snapshot
 
 Screenshot Reference:
-![select copy snapshot](screenshots\10_screenshot_copy_snapshot.png)
+![select copy snapshot](screenshots/10_screenshot_copy_snapshot.png)
 
 In copy options:
 
@@ -227,7 +227,7 @@ Screenshot Reference:
 . encrypted-root-snapshot
 
 Screenshot Reference:
-![successfully created snapshot copy](screenshots\14_screenshot_copy_snapshot_created_successfully.png)
+![successfully created snapshot copy](screenshots/14_screenshot_copy_snapshot_created_successfully.png)
 
 
 # ✅ STEP 6 – Create Encrypted Volume from Encrypted Snapshot
@@ -237,7 +237,7 @@ Screenshot Reference:
 . Click Actions → Create Volume
 
 Screenshot Reference:
-![create volume from snapshot](screenshots\15_screenshot_create_volume.png)
+![create volume from snapshot](screenshots/15_screenshot_create_volume.png)
 
 IMPORTANT:
 🔹Choose same Availability Zone as original instance
@@ -259,10 +259,10 @@ Field	Value:
 . Availability Zone	Same as EC2 instance (ap-south-1a)
 
 Screenshot Reference:
-![volume type](screenshots\18_screenshot_volume_type.png)
+![volume type](screenshots/18_screenshot_volume_type.png)
 
 Screenshot Reference:
-![volume availability zone](screenshots\19_screenshot_volume_az.png)
+![volume availability zone](screenshots/19_screenshot_volume_az.png)
 
 
 # ✅ STEP 7 – Detach Old Root Volume
@@ -288,11 +288,11 @@ This is the original unencrypted root volume.
 . Click Actions → Detach Volume
 
 Screenshot Reference:
-![Detach volume](screenshots\20_screenshot_detach_volume.png)
+![Detach volume](screenshots/20_screenshot_detach_volume.png)
 
 
 Screenshot Reference:
-![Detached successfully](screenshots\21_screenshot_detached_successfully.png)
+![Detached successfully](screenshots/21_screenshot_detached_successfully.png)
 
 . Wait until State shows available (not attached to any instance)
 
@@ -322,7 +322,7 @@ Screenshot Reference:
 . Click Actions → Attach Volume
 
 Screenshot Reference:
-![attached volume](screenshots\22_screenshot_volume_attached.png)
+![attached volume](screenshots/22_screenshot_volume_attached.png)
 
 🔹 Step 4 – Configure Attachment
 
@@ -335,14 +335,14 @@ In the popup:
 . Click Attach
 
 Screenshot Reference:
-![Volume configured](screenshots\23_screenshot_volume_configuered_successfully.png)
+![Volume configured](screenshots/23_screenshot_volume_configuered_successfully.png)
 
 🔹 Step 5 – Confirm
 
 . Volume state will change to in-use
 
 Screenshot Reference:
-![volume inuse](screenshots\24_screenshot_volume_inuse.png)
+![volume inuse](screenshots/24_screenshot_volume_inuse.png)
 
 . The root volume is now encrypted EBS volume
 
@@ -362,7 +362,7 @@ Screenshot Reference:
 . Click Instance state → Start 
 
 Screenshot Reference:
-![start the stopped instance](screenshots\26_screenshot_start_the_stopped_instance.png)
+![start the stopped instance](screenshots/26_screenshot_start_the_stopped_instance.png)
 
 
 🔹Step 3 – Wait for Status Checks
@@ -370,18 +370,18 @@ Screenshot Reference:
 . The Instance State will change from stopped → pending → running
 
 Screenshot Reference:
-![stopped](screenshots\27_screenshot_status_stopped.png)
+![stopped](screenshots/27_screenshot_status_stopped.png)
 
 Screenshot Reference:
-![pensding](screenshots\28_screenshot_status_pending.png)
+![pensding](screenshots/28_screenshot_status_pending.png)
 
 Screenshot Reference:
-![running](screenshots\29_screenshot_status_running.png)
+![running](screenshots/29_screenshot_status_running.png)
 
 . Wait until Status Checks show: 3/3 checks passed 
 
 Screenshot Reference:
-![3/3 checks passed](screenshots\30_screenshot_3_by_3_checks_passed.png)
+![3/3 checks passed](screenshots/30_screenshot_3_by_3_checks_passed.png)
 
 🔹Step 4 – Verify in Console
 
@@ -405,7 +405,7 @@ Reconnect:
 2️⃣ Navigate to home directory: cd /home/ec2-user
 
 Screenshot Reference:
-![cd /home/ec2-user](screenshots\34_screenshot_cd_home_ec2-user_.png)
+![cd /home/ec2-user](screenshots/34_screenshot_cd_home_ec2-user_.png)
 
 3️⃣ List files to make sure test file exists:ls -l
 
@@ -414,7 +414,7 @@ Screenshot Reference:
 . This confirms the file is still on the root volume.
 
 Screenshot Reference:
-![ls -1](screenshots\32_screenshot_connected_linux_ls.png)
+![ls -1](screenshots/32_screenshot_connected_linux_ls.png)
 
 
 
@@ -463,7 +463,7 @@ Screenshot Reference:
 . File content displayed in the terminal
 
 Screenshot Reference:
-![successfull](screenshots\35_screenshot_conclusion.png)
+![successfull](screenshots/35_screenshot_conclusion.png)
 
 
 🎉 This confirms:
